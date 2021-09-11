@@ -228,9 +228,8 @@ def user_stats(df, city):
 
 def main():
     while True:
-        city, month, day = 'chicago', 'February', 'Sunday'
+        city, month, day = get_filters()
         df = load_data(city, month, day)
-        print(pd.DataFrame(df['Start Station'].value_counts()).index)
         print("\nThe City is: {}, The Filter for Month is: {}, The Filter for Day is: {}".format(city.title(),
                                                                                                  month.title(),
                                                                                                  day.title()))
@@ -239,10 +238,10 @@ def main():
             main()
             break
 
-        # time_stats(df)
-        # station_stats(df)
-        # trip_duration_stats(df)
-        # user_stats(df, city)
+        time_stats(df)
+        station_stats(df)
+        trip_duration_stats(df)
+        user_stats(df, city)
 
         col = ["User ID", "Start Time", "End Time", "Trip Duration", "Start Station", "End Station",
                "User Type", "Gender", "Birth Year", "Month", "Hour", "Day of Week", "Total Time"]

@@ -17,7 +17,7 @@ st.title("US Bikeshare Data Explorer!")
 st.markdown("""
 This app perform some statistics calculations on US bikeshare data.
 - **Python Version:** 3.9.
-- **Python Libraries:** Pandas 1.3.2, Streamlit.
+- **Python Libraries:** Pandas 1.3.2, Matplotlib 3.4.3, Seaborn 0.11.2, Streamlit 0.88.0.
 - **Data Source:** [CSV-Files](https://github.com/Bazina/Bikeshare-Data-Project/blob/main/data.7z).
 """)
 

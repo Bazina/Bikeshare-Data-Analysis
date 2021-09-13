@@ -5,9 +5,13 @@ import streamlit as st
 
 st.set_page_config(layout="wide")
 
-CITY_DATA = {'Chicago': 'https://raw.githubusercontent.com/Bazina/Bikeshare-Data-Analysis/main/data/chicago.csv',
-             'New York': 'https://raw.githubusercontent.com/Bazina/Bikeshare-Data-Analysis/main/data/new_york_city.csv',
-             'Washington': 'https://raw.githubusercontent.com/Bazina/Bikeshare-Data-Analysis/main/data/washington.csv'}
+# CITY_DATA = {'Chicago': 'https://raw.githubusercontent.com/Bazina/Bikeshare-Data-Analysis/main/data/chicago.csv',
+#              'New York': 'https://raw.githubusercontent.com/Bazina/Bikeshare-Data-Analysis/main/data/new_york_city.csv',
+#              'Washington': 'https://raw.githubusercontent.com/Bazina/Bikeshare-Data-Analysis/main/data/washington.csv'}
+
+CITY_DATA = {'Chicago': 'data/chicago.csv',
+             'New York': 'data/new_york_city.csv',
+             'Washington': 'data/washington.csv'}
 
 months = ['All', 'January', 'February', 'March', 'April', 'May', 'June']
 days = ['All', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
@@ -22,6 +26,21 @@ This app perform some statistics calculations on US bikeshare data.
 """)
 
 st.sidebar.header('User Input Features')
+st.markdown(
+    """
+    <style>
+    [data-testid="stSidebar"][aria-expanded="true"] > div:first-child {
+        width: 250px;
+    }
+    [data-testid="stSidebar"][aria-expanded="false"] > div:first-child {
+        width: 250px;
+        margin-left: -500px;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 city = st.sidebar.radio("Would you like to see data for", ('Chicago', 'New York', 'Washington'))
 check = st.sidebar.selectbox('Filter the data by', ['Both, Day & Month', 'Day', 'Month'])
 
@@ -100,7 +119,7 @@ st.markdown("\nThe City is: {}, The Filter for Month is: {}, The Filter for Day 
 if st.button('Show Some Raw Data'):
     st.table(show_df.sample(n=5))
 
-row3, row4 = st.columns((1, 1))
+row3, row_spacer1, row4 = st.columns((1, 0.1, 1))
 
 
 def time_stats(city_df):
@@ -129,8 +148,8 @@ def time_stats(city_df):
 
     st.markdown("""| | Most Popular Month | Most Popular Day | Most Popular Hour |
                 | ----------- | ----------- | ----------- | ----------- |
-                | **Name/Number** | <span style="color:rgb(187, 32, 32); background:rgb(248, 249, 251);">{}</span> | <span style="color:rgb(187, 32, 32); background:rgb(248, 249, 251);">{}</span> | <span style="color:rgb(187, 32, 32); background:rgb(248, 249, 251);">{}</span> |
-                | **Frequency** | <span style="color:rgb(242, 159, 5); background:rgb(248, 249, 251);">{}</span> | <span style="color:rgb(242, 159, 5); background:rgb(248, 249, 251);">{}</span> | <span style="color:rgb(242, 159, 5); background:rgb(248, 249, 251);">{}</span> |""".format(
+                | **Name/Number** | <span style="background:rgb(248, 249, 251);">*{}*</span> | <span style="background:rgb(248, 249, 251);">*{}*</span> | <span style="background:rgb(248, 249, 251);">*{}*</span> |
+                | **Frequency** | <span style="color:rgb(187, 32, 32); background:rgb(248, 249, 251);">**{}**</span> | <span style="color:rgb(187, 32, 32); background:rgb(248, 249, 251);">**{}**</span> | <span style="color:rgb(187, 32, 32); background:rgb(248, 249, 251);">**{}**</span> |""".format(
         popular_month.title(), popular_day, popular_hour,
         popular_month_data[popular_month.title()],
         popular_day_data[popular_day],
@@ -194,8 +213,8 @@ def station_stats(city_df):
 
     st.markdown("""| | Most Popular Start Station | Most Popular End Station |
                     | ----------- | ----------- | ----------- | ----------- |
-                    | **Name** | <span style="color:rgb(187, 32, 32); background:rgb(248, 249, 251); font-style: italic;">{}</span> | <span style="color:rgb(187, 32, 32); background:rgb(248, 249, 251); font-style: italic;">{}</span> |
-                    | **Frequency** | <span style="color:rgb(242, 159, 5); background:rgb(248, 249, 251);">{}</span> | <span style="color:rgb(242, 159, 5); background:rgb(248, 249, 251);">{}</span> |""".format(
+                    | **Name** | <span style="background:rgb(248, 249, 251);">*{}*</span> | <span style="background:rgb(248, 249, 251);">*{}*</span> |
+                    | **Frequency** | <span style="color:rgb(187, 32, 32); background:rgb(248, 249, 251);">**{}**</span> | <span style="color:rgb(187, 32, 32); background:rgb(248, 249, 251);">**{}**</span> |""".format(
         popular_start_station,
         popular_end_station,
         start_station[popular_start_station],
@@ -208,11 +227,11 @@ def station_stats(city_df):
     # station = df.groupby(['Start Station', 'End Station']).sum()
     st.markdown("  - **Most Popular Trip:**\n"
                 "    - Start Station: "
-                '<span style="color:rgb(187, 32, 32); background:rgb(248, 249, 251); font-style: italic;">{}</span>\n'
+                '<span style="font-style: italic; background:rgb(248, 249, 251);">{}</span>\n'
                 "    - End Station: "
-                '<span style="color:rgb(187, 32, 32); background:rgb(248, 249, 251); font-style: italic;">{}</span>\n'
+                '<span style="font-style: italic; background:rgb(248, 249, 251);">{}</span>\n'
                 "    - Frequency: "
-                '<span style="color:rgb(242, 159, 5); background:rgb(248, 249, 251);">{}'
+                '<span style="color:rgb(187, 32, 32); background:rgb(248, 249, 251);">**{}**'
                 '</span>'.format(popular_station[0],
                                  popular_station[1],
                                  station[popular_station]), unsafe_allow_html=True)
@@ -256,7 +275,7 @@ def trip_duration_stats(city_df):
 trip_duration_stats(df)
 
 row5_0, row5_1 = st.columns((1, 1))
-row5, row6 = st.columns((1, 1))
+row5, row_spacer2, row6 = st.columns((1, 0.1, 1))
 row7, row8 = st.columns((1, 1))
 
 
@@ -350,20 +369,20 @@ def user_stats(city_df, chosen_city):
         if len(type_user) == 3:
             st.markdown("  - **User Types:**\n"
                         "    - {}: "
-                        '<span style="color:rgb(242, 159, 5); background:rgb(248, 249, 251);">{}</span>\n'
+                        '<span style="color:rgb(187, 32, 32); background:rgb(248, 249, 251);">**{}**</span>\n'
                         "    - {}: "
-                        '<span style="color:rgb(242, 159, 5); background:rgb(248, 249, 251);">{}</span>\n'
+                        '<span style="color:rgb(187, 32, 32); background:rgb(248, 249, 251);">**{}**</span>\n'
                         "    - {}: "
-                        '<span style="color:rgb(242, 159, 5); background:rgb(248, 249, 251);">{}'
+                        '<span style="color:rgb(187, 32, 32); background:rgb(248, 249, 251);">**{}**'
                         '</span>'.format(type_user[0], cnt_user[0], type_user[1], cnt_user[1], type_user[2],
                                          cnt_user[2]),
                         unsafe_allow_html=True)
         else:
             st.markdown("  - **User Types:**\n"
                         "    - {}: "
-                        '<span style="color:rgb(242, 159, 5); background:rgb(248, 249, 251);">{}</span>\n'
+                        '<span style="color:rgb(187, 32, 32); background:rgb(248, 249, 251);">**{}**</span>\n'
                         "    - {}: "
-                        '<span style="color:rgb(242, 159, 5); background:rgb(248, 249, 251);">{}'
+                        '<span style="color:rgb(187, 32, 32); background:rgb(248, 249, 251);">**{}**'
                         '</span>'.format(type_user[0], cnt_user[0], type_user[1], cnt_user[1]),
                         unsafe_allow_html=True)
 
@@ -372,7 +391,7 @@ def user_stats(city_df, chosen_city):
         else:
             typ = "Customer"
         st.markdown("Notice that the dominated **type** is "
-                    '<span style="color:rgb(187, 32, 32); background:rgb(248, 249, 251); font-weight:900">{}'
+                    '<span style="background:rgb(248, 249, 251);">*{}*'
                     '</span>'.format(typ), unsafe_allow_html=True)
 
     with row6:
@@ -390,9 +409,9 @@ def user_stats(city_df, chosen_city):
 
             st.markdown("  - **Genders:**\n"
                         "    - {}: "
-                        '<span style="color:rgb(242, 159, 5); background:rgb(248, 249, 251);">{}</span>\n'
+                        '<span style="color:rgb(187, 32, 32); background:rgb(248, 249, 251);">**{}**</span>\n'
                         "    - {}: "
-                        '<span style="color:rgb(242, 159, 5); background:rgb(248, 249, 251);">{}'
+                        '<span style="color:rgb(187, 32, 32); background:rgb(248, 249, 251);">**{}**'
                         '</span>'.format(type_gender[0],
                                          cnt_gender[0],
                                          type_gender[1],

@@ -5,13 +5,15 @@ import streamlit as st
 
 st.set_page_config(layout="wide")
 
-# CITY_DATA = {'Chicago': 'https://raw.githubusercontent.com/Bazina/Bikeshare-Data-Analysis/main/data/chicago.csv',
-#              'New York': 'https://raw.githubusercontent.com/Bazina/Bikeshare-Data-Analysis/main/data/new_york_city.csv',
-#              'Washington': 'https://raw.githubusercontent.com/Bazina/Bikeshare-Data-Analysis/main/data/washington.csv'}
+CITY_DATA = {'Chicago': 'https://raw.githubusercontent.com/Bazina/Bikeshare-Data-Analysis/main/data/chicago.csv',
+             'New York': 'https://raw.githubusercontent.com/Bazina/Bikeshare-Data-Analysis/main/data/new_york_city.csv',
+             'Washington': 'https://raw.githubusercontent.com/Bazina/Bikeshare-Data-Analysis/main/data/washington.csv'}
 
-CITY_DATA = {'Chicago': 'data/chicago.csv',
-             'New York': 'data/new_york_city.csv',
-             'Washington': 'data/washington.csv'}
+# Use this if the server will be hosted locally through this command "streamlit run bikeshare-app.py"
+# and the csv files in folder called data within the same directory of the app file
+# CITY_DATA = {'Chicago': 'data/chicago.csv',
+#              'New York': 'data/new_york_city.csv',
+#              'Washington': 'data/washington.csv'}
 
 months = ['All', 'January', 'February', 'March', 'April', 'May', 'June']
 days = ['All', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']

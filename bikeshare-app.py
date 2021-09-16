@@ -312,7 +312,7 @@ def age(city_df):
     st.pyplot(fig)
 
     st.markdown("It looks like the major of bikers are **{}** about "
-                '<span style="color:rgb(9, 171, 59);">*{}*'
+                '<span style="color:rgb(9, 171, 59);">**{}**</span>'
                 " are between 13-18 "
                 "years old among "
                 '<span style="color:rgb(9, 171, 59);">*{}*</span>'.format(cls, adult, city_df.shape[0]), unsafe_allow_html=True)
@@ -439,16 +439,16 @@ def user_stats(city_df, chosen_city):
 
         with col1:
             st.markdown("\n  - **Earliest Year:** "
-                        '<span style="color:rgb(9, 171, 59);">*{}*</span>'.format(min_year),
+                        '<span style="color:rgb(9, 171, 59);">**{}**</span>'.format(min_year),
                         unsafe_allow_html=True)
 
         with col2:
             st.markdown("  - **Recent Year:** "
-                        '<span style="color:rgb(9, 171, 59);">*{}*</span>'.format(max_year),
+                        '<span style="color:rgb(9, 171, 59);">**{}**</span>'.format(max_year),
                         unsafe_allow_html=True)
         with col3:
             st.markdown("  - **Most Common Year:** "
-                        '<span style="color:rgb(9, 171, 59);">*{}*</span>'.format(mode_year),
+                        '<span style="color:rgb(9, 171, 59);">**{}**</span>'.format(mode_year),
                         unsafe_allow_html=True)
     else:
         st.markdown('\n<span style="color:rgb(187, 32, 32); font-size:1.5em;">'

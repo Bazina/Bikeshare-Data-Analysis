@@ -150,8 +150,8 @@ def time_stats(city_df):
 
     st.markdown("""| | Most Popular Month | Most Popular Day | Most Popular Hour |
                 | ----------- | ----------- | ----------- | ----------- |
-                | **Name/Number** | <span style="background:rgb(248, 249, 251);">*{}*</span> | <span style="background:rgb(248, 249, 251);">*{}*</span> | <span style="background:rgb(248, 249, 251);">*{}*</span> |
-                | **Frequency** | <span style="color:rgb(187, 32, 32); background:rgb(248, 249, 251);">**{}**</span> | <span style="color:rgb(187, 32, 32); background:rgb(248, 249, 251);">**{}**</span> | <span style="color:rgb(187, 32, 32); background:rgb(248, 249, 251);">**{}**</span> |""".format(
+                | **Name/Number** | *{}* | *{}* | *{}* |
+                | **Frequency** | <span style="color:rgb(187, 32, 32);">**{}**</span> | <span style="color:rgb(187, 32, 32);">**{}**</span> | <span style="color:rgb(187, 32, 32);">**{}**</span> |""".format(
         popular_month.title(), popular_day, popular_hour,
         popular_month_data[popular_month.title()],
         popular_day_data[popular_day],
@@ -161,7 +161,7 @@ def time_stats(city_df):
     if popular_hour > 12:
         pm_am = "p.m."
         st.markdown("Looks like the most traffic hour is "
-                    '<span style="color:rgb(187, 32, 32); background:rgb(248, 249, 251); font-weight:900">{} {}</span>'
+                    '<span style="color:rgb(187, 32, 32);">**{} {}**</span>'
                     ", and maybe this has a correlation with the age of the users. it looks like the bikers usually"
                     " start their session after the work-time which indicates that they trying"
                     " to have a good health".format(popular_hour - 12, pm_am),
@@ -169,7 +169,7 @@ def time_stats(city_df):
     else:
         pm_am = "a.m."
         st.markdown("Looks like the most traffic hour is "
-                    '<span style="color:rgb(187, 32, 32); background:rgb(248, 249, 251); font-weight:900">{} {}</span>'
+                    '<span style="color:rgb(187, 32, 32);">**{} {}**</span>'
                     ", and maybe this has a correlation with the age of the users. it looks like the bikers usually"
                     " start their session before the work-time which indicates that they trying"
                     " to have a good health".format(popular_hour, pm_am),
@@ -215,8 +215,8 @@ def station_stats(city_df):
 
     st.markdown("""| | Most Popular Start Station | Most Popular End Station |
                     | ----------- | ----------- | ----------- | ----------- |
-                    | **Name** | <span style="background:rgb(248, 249, 251);">*{}*</span> | <span style="background:rgb(248, 249, 251);">*{}*</span> |
-                    | **Frequency** | <span style="color:rgb(187, 32, 32); background:rgb(248, 249, 251);">**{}**</span> | <span style="color:rgb(187, 32, 32); background:rgb(248, 249, 251);">**{}**</span> |""".format(
+                    | **Name** | *{}* | *{}* |
+                    | **Frequency** | <span style="color:rgb(187, 32, 32);">**{}**</span> | <span style="color:rgb(187, 32, 32);">**{}**</span> |""".format(
         popular_start_station,
         popular_end_station,
         start_station[popular_start_station],
@@ -229,11 +229,11 @@ def station_stats(city_df):
     # station = df.groupby(['Start Station', 'End Station']).sum()
     st.markdown("  - **Most Popular Trip:**\n"
                 "    - Start Station: "
-                '<span style="font-style: italic; background:rgb(248, 249, 251);">{}</span>\n'
+                '*{}*\n'
                 "    - End Station: "
-                '<span style="font-style: italic; background:rgb(248, 249, 251);">{}</span>\n'
+                '*{}*\n'
                 "    - Frequency: "
-                '<span style="color:rgb(187, 32, 32); background:rgb(248, 249, 251);">**{}**'
+                '<span style="color:rgb(187, 32, 32);">**{}**'
                 '</span>'.format(popular_station[0],
                                  popular_station[1],
                                  station[popular_station]), unsafe_allow_html=True)
@@ -312,12 +312,10 @@ def age(city_df):
     st.pyplot(fig)
 
     st.markdown("It looks like the major of bikers are **{}** about "
-                '<span style="color:rgb(9, 171, 59); background:rgb(248, 249, 251); font-weight: 600;'
-                ' font-style: italic;">{}</span>'
+                '<span style="color:rgb(9, 171, 59);">*{}*'
                 " are between 13-18 "
                 "years old among "
-                '<span style="color:rgb(9, 171, 59); background:rgb(248, 249, 251); font-weight: 600;'
-                ' font-style: italic;">{}</span>'.format(cls, adult, city_df.shape[0]), unsafe_allow_html=True)
+                '<span style="color:rgb(9, 171, 59);">*{}*</span>'.format(cls, adult, city_df.shape[0]), unsafe_allow_html=True)
 
 
 def gender(city_df):
@@ -371,20 +369,20 @@ def user_stats(city_df, chosen_city):
         if len(type_user) == 3:
             st.markdown("  - **User Types:**\n"
                         "    - {}: "
-                        '<span style="color:rgb(187, 32, 32); background:rgb(248, 249, 251);">**{}**</span>\n'
+                        '<span style="color:rgb(187, 32, 32);">**{}**</span>\n'
                         "    - {}: "
-                        '<span style="color:rgb(187, 32, 32); background:rgb(248, 249, 251);">**{}**</span>\n'
+                        '<span style="color:rgb(187, 32, 32);">**{}**</span>\n'
                         "    - {}: "
-                        '<span style="color:rgb(187, 32, 32); background:rgb(248, 249, 251);">**{}**'
+                        '<span style="color:rgb(187, 32, 32);">**{}**'
                         '</span>'.format(type_user[0], cnt_user[0], type_user[1], cnt_user[1], type_user[2],
                                          cnt_user[2]),
                         unsafe_allow_html=True)
         else:
             st.markdown("  - **User Types:**\n"
                         "    - {}: "
-                        '<span style="color:rgb(187, 32, 32); background:rgb(248, 249, 251);">**{}**</span>\n'
+                        '<span style="color:rgb(187, 32, 32);">**{}**</span>\n'
                         "    - {}: "
-                        '<span style="color:rgb(187, 32, 32); background:rgb(248, 249, 251);">**{}**'
+                        '<span style="color:rgb(187, 32, 32);">**{}**'
                         '</span>'.format(type_user[0], cnt_user[0], type_user[1], cnt_user[1]),
                         unsafe_allow_html=True)
 
@@ -392,9 +390,7 @@ def user_stats(city_df, chosen_city):
             typ = "Subscriber"
         else:
             typ = "Customer"
-        st.markdown("Notice that the dominated **type** is "
-                    '<span style="background:rgb(248, 249, 251);">*{}*'
-                    '</span>'.format(typ), unsafe_allow_html=True)
+        st.markdown("Notice that the dominated **type** is *{}*".format(typ), unsafe_allow_html=True)
 
     with row6:
         if chosen_city != "Washington":
@@ -411,9 +407,9 @@ def user_stats(city_df, chosen_city):
 
             st.markdown("  - **Genders:**\n"
                         "    - {}: "
-                        '<span style="color:rgb(187, 32, 32); background:rgb(248, 249, 251);">**{}**</span>\n'
+                        '<span style="color:rgb(187, 32, 32);">**{}**</span>\n'
                         "    - {}: "
-                        '<span style="color:rgb(187, 32, 32); background:rgb(248, 249, 251);">**{}**'
+                        '<span style="color:rgb(187, 32, 32);">**{}**'
                         '</span>'.format(type_gender[0],
                                          cnt_gender[0],
                                          type_gender[1],
@@ -423,13 +419,11 @@ def user_stats(city_df, chosen_city):
             if cnt_gender[0] > cnt_gender[1]:
                 sex = "Male"
                 st.markdown("Notice that the dominated **gender** is "
-                            '<span style="color:rgb(80, 106, 212); background:rgb(248, 249, 251); font-weight:900">{}'
-                            '</span>'.format(sex), unsafe_allow_html=True)
+                            '<span style="color:rgb(187, 32, 32);">**{}**</span>'.format(sex), unsafe_allow_html=True)
             else:
                 sex = "Female"
                 st.markdown("Notice that the dominated **gender** is "
-                            '<span style="color:rgb(187, 32, 32); background:rgb(248, 249, 251); font-weight:900">{}'
-                            '</span>'.format(sex), unsafe_allow_html=True)
+                            '<span style="color:rgb(187, 32, 32);">**{}**</span>'.format(sex), unsafe_allow_html=True)
 
     if chosen_city != "Washington":
         with row7:
@@ -445,22 +439,19 @@ def user_stats(city_df, chosen_city):
 
         with col1:
             st.markdown("\n  - **Earliest Year:** "
-                        '<span style="color:rgb(9, 171, 59); background:rgb(248, 249, 251); font-weight: 600;'
-                        ' font-style: italic;">{}</span>'.format(min_year),
+                        '<span style="color:rgb(9, 171, 59);">*{}*</span>'.format(min_year),
                         unsafe_allow_html=True)
 
         with col2:
             st.markdown("  - **Recent Year:** "
-                        '<span style="color:rgb(9, 171, 59); background:rgb(248, 249, 251); font-weight: 600;'
-                        ' font-style: italic;">{}</span>'.format(max_year),
+                        '<span style="color:rgb(9, 171, 59);">*{}*</span>'.format(max_year),
                         unsafe_allow_html=True)
         with col3:
             st.markdown("  - **Most Common Year:** "
-                        '<span style="color:rgb(9, 171, 59); background:rgb(248, 249, 251); font-weight: 600;'
-                        ' font-style: italic;">{}</span>'.format(mode_year),
+                        '<span style="color:rgb(9, 171, 59);">*{}*</span>'.format(mode_year),
                         unsafe_allow_html=True)
     else:
-        st.markdown('\n<span style="color:rgb(187, 32, 32); font-size:1.5em; background:rgb(248, 249, 251);">'
+        st.markdown('\n<span style="color:rgb(187, 32, 32); font-size:1.5em;">'
                     '**There is no birth year and genders data for this city**</span>',
                     unsafe_allow_html=True)
 
